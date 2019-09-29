@@ -22,4 +22,6 @@ public class GoodsType {
     private Double price;
     @ApiModelProperty(value = "具体的图片")
     private String photoUrl;
+    @ApiModelProperty(value = "用于mybatis连表查询的")
+    private Goods goods;
 }
