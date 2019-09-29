@@ -19,5 +19,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private Double balance;
+    private Integer level;
+    private Integer growRate;
 
 }
