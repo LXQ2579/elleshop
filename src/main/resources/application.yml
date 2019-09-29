@@ -1,0 +1,53 @@
+server:
+  servlet:
+    context-path: /elleshop
+
+mybatis:
+  type-aliases-package: com.lxq.seckill.entity
+  mapper-locations: classpath:mapper/*.xml
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/elleshop?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      max-active: 20
+      initial-size: 5
+  thymeleaf:
+    cache: false
+
+# redis数据库服务器id 端口号 密码
+  redis:
+    host: 118.190.150.3
+    port: 6699
+#默认不会启用连接池：
+#连接池配置:
+    redis:
+     lettuce:
+      pool:
+       max-active: 8
+       min-idle: 1
+       max-idle: 8
+
+
+
+  #下划线转驼峰
+  mybatis:
+    configuration:
+      map-underscore-to-camel-case: true
+
+
+
+# 不显示thymeleaf日志
+logging:
+  level:
+    org:
+     thymeleaf: info
+
+
+
+
+
