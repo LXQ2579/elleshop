@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author sanriyue
  */
@@ -24,4 +26,10 @@ public class GoodsType {
     private String photoUrl;
     @ApiModelProperty(value = "用于mybatis连表查询的")
     private Goods goods;
+    @ApiModelProperty(value = "具体属性1，用于mybatis")
+    private Color color;
+    @ApiModelProperty(value = "具体属性2，同上")
+    private Size size;
+    @ApiModelProperty(value = "具体属性的命名内容，以及方便查询的商品ID")
+    private List<Classify> classifyList;
 }

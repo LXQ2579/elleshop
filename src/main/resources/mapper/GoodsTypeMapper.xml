@@ -26,5 +26,7 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
             <result property="goodsMsg" column="goods_msg"/>
         </association>
     </resultMap>
-
+    <select id="findGoodTypeById" resultMap="goodsTypeMap">
+        select * from
+    </select>
 </mapper>
