@@ -25,8 +25,10 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
             <result column="video_url" property="videoUrl"/>
             <result property="goodsMsg" column="goods_msg"/>
         </association>
+
     </resultMap>
     <select id="findGoodTypeById" resultMap="goodsTypeMap">
-        select * from
+        select * from goodsType gt,goods g,color c,size s,Classify cf
+        where gt.goods_id = g.goods_id
     </select>
 </mapper>
