@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+dao层接口的全限定名和namespace一样
+dao层接口中的方法名和映射文件中增删改查配置的statement id一致
+方法的参数和配置的输入参数保持一致
+方法的返回值类型和配置中返回类型保持一致
+ -->
+<mapper namespace="com.mars.elleshop.dao.GoodsTypeDao">
+    <resultMap id="goodsTypeMap" type="com.mars.elleshop.entity.GoodsType">
+        <id property="goodsTypeId" column="goods_type_id"/>
+        <result property="goodsId" column="goods_id"/>
+        <result property="sizeId" column="size_id"/>
+        <result property="colorId" column="color_id"/>
+        <result property="price" column="price"/>
+        <result property="photoUrl" column="photo_url"/>
+        <association property="goods" javaType="com.mars.elleshop.entity.Goods">
+            <id property="goodsId" column="goods_id"/>
+            <result property="goodsName" column="goodsName"/>
+            <result property="brandId" column="brand_id"/>
+            <result property="styleId" column="style_id"/>
+            <result property="areaId" column="area_id"/>
+            <result column="video_url" property="videoUrl"/>
+            <result property="goodsMsg" column="goods_msg"/>
+        </association>
+        <association property="color" javaType="com.mars.elleshop.entity.Color">
+            <id property="colorId" column="color_id"/>
+            <result property="colorName" column="color_name"/>
+            <result property="classifyIdColor" column="classify_id_color"/>
+        </association>
+        <association property="size" javaType="com.mars.elleshop.entity.Size">
+            <id property="sizeId" column="size_id"/>
+            <result property="sizeName" column="size_name"/>
+            <result property="classifyIdSize" column="classify_id_size"/>
+        </association>
+<!--        <collection property="classifyList" column="com.mars.elleshop.entity.Classify">-->
+<!--            <id property="classifyId" column="classify_id"/>-->
+<!--            <result property="classifyName" column="classify_name"/>-->
+<!--            <result property="goodsId" column="goods_id"/>-->
+<!--        </collection>-->
+    </resultMap>
+    <select id="findGoodsTypeById" resultMap="goodsTypeMap">
+        SELECT  goods_type_id, gs.goods_id, gs.size_id, gs.color_id, price, photo_url,
+        g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg,
+        c.color_id, color_name, c.classify_id_color,
+        s.size_id, size_name, s.classify_id_size
+        FROM goodstype gs , goods g , color c , `size` s
+        WHERE gs.goods_id = g.goods_id
+        and gs.color_id = c.color_id
+        and gs.size_id = s.size_id
+
+        and gs.goods_type_id = #{goodsTypeId}
+    </select>
+</mapper>

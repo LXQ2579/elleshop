@@ -34,8 +34,8 @@
     </Appenders>
     <Loggers>
         <!--<Logger name="org.springframework" level="DEBUG" />-->
-        <Logger name="org.mybatis" level="DEBUG" />
-        <Root level="DEBUG">
+        <Logger name="org.mybatis" level="info" />
+        <Root level="info">
             <AppenderRef ref="console"></AppenderRef>
             <!--<AppenderRef ref="error"></AppenderRef>
             <AppenderRef ref="rollingFile"></AppenderRef>-->

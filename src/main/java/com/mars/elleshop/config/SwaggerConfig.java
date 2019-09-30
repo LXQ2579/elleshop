@@ -32,7 +32,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lxq.employee_vue.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.mars.elleshop.controller"))
                 .paths(PathSelectors.any())
                 //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .build();
