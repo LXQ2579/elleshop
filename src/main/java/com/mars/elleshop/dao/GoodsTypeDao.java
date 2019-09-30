@@ -8,7 +8,7 @@ import java.util.List;
  * @author sanriyue
  */
 public interface GoodsTypeDao {
-    GoodsType findGoodTypeById(Integer goodsTypeId);
+    GoodsType findGoodsTypeById(Integer goodsTypeId);
 
     List<GoodsType> findAllGoodsTypeByGoodsId(Integer goodsId);
 }

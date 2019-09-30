@@ -13,5 +13,5 @@ public class Size {
     private Integer sizeId;
     @ApiModelProperty(value = "具体的内容，如XM 均码  42等")
     private String sizeName;
-    private Integer ofTypeId;
+    private Integer classifyId;
 }
