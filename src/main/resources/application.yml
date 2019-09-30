@@ -27,21 +27,6 @@ logging:
     org:
       thymeleaf: info
 
-# redis数据库服务器id 端口号 密码
-   redis:
-    host: 106.13.115.175
-    port: 6379
-#默认不会启用连接池：
-#连接池配置:
-    redis:
-     lettuce:
-      pool:
-       max-active: 8
-       min-idle: 1
-       max-idle: 8
-
-
-
 
 
 
