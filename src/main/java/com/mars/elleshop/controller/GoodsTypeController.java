@@ -23,7 +23,7 @@ public class GoodsTypeController {
     GoodsTypeService goodsTypeService;
 
     @ApiOperation(value = "根据ID查询到单个商品的信息")
-    @GetMapping("/findGoodsTypeById")
+    @GetMapping("/findGoodsTypeById.do")
     public JsonBean<GoodsType> findGoodsTypeById(Integer goodsTypeId){
         if (goodsTypeId != null){
             GoodsType goodsType = goodsTypeService.findGoodsTypeById(goodsTypeId);
