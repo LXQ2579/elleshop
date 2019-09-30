@@ -17,7 +17,7 @@ import java.io.IOException;
  * @date 2019/09/29  15:11:00
  */
 //@Order(1)//filter优先级
-@WebFilter("*.do")
+//@WebFilter("*.do")
 public class LoginFilter implements Filter {
 
     @Autowired
