@@ -27,7 +27,7 @@ public class GlobalTransaction {
     private static final int TX_METHOD_TIMEOUT = 10;
 
     //restful包下所有service包或者service的子包的任意类的任意方法
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.lxq.springboot_emp.service.impl.*.*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.lxq.elleshop.service.impl.*.*(..))";
 
     @Autowired
     private PlatformTransactionManager transactionManager;

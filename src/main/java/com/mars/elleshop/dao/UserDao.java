@@ -10,4 +10,6 @@ public interface UserDao {
 
     User findByPhone(String phone);
 
+    void addUser(User user);
+
 }
