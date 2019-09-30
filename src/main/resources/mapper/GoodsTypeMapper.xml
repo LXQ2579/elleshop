@@ -18,7 +18,7 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
         <result property="photoUrl" column="photo_url"/>
         <association property="goods" javaType="com.mars.elleshop.entity.Goods">
             <id property="goodsId" column="goods_id"/>
-            <result property="goodsName" column="goodsName"/>
+            <result property="goodsName" column="goods_name"/>
             <result property="brandId" column="brand_id"/>
             <result property="styleId" column="style_id"/>
             <result property="areaId" column="area_id"/>
