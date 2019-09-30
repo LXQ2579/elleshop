@@ -30,6 +30,6 @@ public class GoodsType {
     private Color color;
     @ApiModelProperty(value = "具体属性2，同上")
     private Size size;
-    @ApiModelProperty(value = "具体属性的命名内容，以及方便查询的商品ID")
+
     private List<Classify> classifyList;
 }
