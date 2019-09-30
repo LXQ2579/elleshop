@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
+    @Override
+    public void register(String phone, String password) {
+        User user = new User();
+        user.setPhone(phone);
+        user.setPassword(password);
+
+        userDao.addUser(user);
+
+    }
 }

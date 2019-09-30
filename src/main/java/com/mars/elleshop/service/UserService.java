@@ -9,4 +9,6 @@ import com.mars.elleshop.entity.User;
 public interface UserService {
 
     User login(String phone, String password);
+
+    void register(String phone, String password);
 }
