@@ -10,6 +10,14 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
  -->
 <mapper namespace="com.mars.elleshop.dao.UserDao">
 
+    <select id="findByPhone" parameterType="string" resultType="user">
+        select * from user where phone = #{phone}
+    </select>
+    
+    <insert id="addUser" parameterType="user">
+        insert into user(phone, password, ) values (#{phone}, #{password})
+    </insert>
+
 <!--    <resultMap id="goodsTypeMap" type="goodsType">-->
 <!--        <id property="goodsTypeId" column="goods_type_id"/>-->
 <!--        <result property="goodsId" column="goods_id"/>-->

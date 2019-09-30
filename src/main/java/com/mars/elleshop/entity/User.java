@@ -31,5 +31,7 @@ public class User implements Serializable {
     private Integer level;
     @ApiModelProperty(value = "用户的会员成长值")
     private Integer growRate;
+    @ApiModelProperty(value = "用户的头像图片URL")
+    private String photoUrl;
 
 }
