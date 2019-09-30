@@ -13,6 +13,6 @@ public class GlobalExceptionResolver {
     @ExceptionHandler(Exception.class)
     public JsonBean exception(Exception ex){
 
-        return new JsonBean<>(0, ex.getMessage());
+        return new JsonBean<>(1, ex.getMessage());
     }
 }

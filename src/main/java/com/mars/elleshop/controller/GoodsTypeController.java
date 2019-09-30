@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,15 +23,13 @@ public class GoodsTypeController {
     GoodsTypeService goodsTypeService;
 
     @ApiOperation(value = "根据ID查询到单个商品的信息")
-    @RequestMapping("/findGoodsTypeById")
-    public @ResponseBody
-    JsonBean findGoodsTypeById(Integer goodsTypeId){
+    @GetMapping("/findGoodsTypeById")
+    public JsonBean<GoodsType> findGoodsTypeById(Integer goodsTypeId){
         if (goodsTypeId != null){
             GoodsType goodsType = goodsTypeService.findGoodsTypeById(goodsTypeId);
-            if (goodsType != null){
-                return new JsonBean<GoodsType>(1,goodsType);
-            }
+            return new JsonBean<GoodsType>(0,goodsType);
+
         }
-        return new JsonBean<>(1,"商品信息查询有误，请联系管理员");
+        return null;
     }
 }
