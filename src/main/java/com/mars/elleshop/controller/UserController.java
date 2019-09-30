@@ -30,7 +30,8 @@ public class UserController {
     private StringRedisTemplate stringRedisTemplate;
 
     @PostMapping("/login.do")
-    public JsonBean login(String phone, String password){
+    @ApiOperation(value="获取用户信息", notes="获取用户手机号和密码用于登陆")
+    public JsonBean<String> login(String phone, String password){
 
         userService.login(phone, password);
 
@@ -46,7 +47,7 @@ public class UserController {
 
     @ApiOperation(value="获取用户信息", notes="获取用户手机号和密码用于注册")
     @PostMapping("/register.do")
-    public JsonBean userRegister(String phone, String password) {
+    public JsonBean<String> userRegister(String phone, String password) {
 
         userService.register(phone, password);
 
