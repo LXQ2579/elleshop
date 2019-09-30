@@ -3,6 +3,7 @@ package com.mars.elleshop.service.impl;
 import com.mars.elleshop.dao.UserDao;
 import com.mars.elleshop.entity.User;
 import com.mars.elleshop.service.UserService;
+import com.mars.elleshop.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,9 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             throw new RuntimeException("手机号错误");
         }
-        if (!password.equals(user.getPassword())){
+        String passwordMD5 = MD5Utils.md5(password + "liujiulong");
+
+        if (!passwordMD5.equals(user.getPassword())){
             throw new RuntimeException("密码错误");
         }
 
@@ -32,11 +35,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(String phone, String password) {
-        User user = new User();
-        user.setPhone(phone);
-        user.setPassword(password);
+        User user = userDao.findByPhone(phone);
+        if (user != null){
+            throw new RuntimeException("手机号已被注册");
+        }
+        String passwordMD5 = MD5Utils.md5(password + "liujiulong");
+        User newUser = new User();
+        newUser.setPhone(phone);
+        newUser.setPassword(passwordMD5);
 
-        userDao.addUser(user);
+        userDao.addUser(newUser);
 
     }
 }
