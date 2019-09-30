@@ -28,25 +28,29 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
         <association property="color" javaType="com.mars.elleshop.entity.Color">
             <id property="colorId" column="color_id"/>
             <result property="colorName" column="color_name"/>
-            <result property="classifyId" column="classify_id"/>
+            <result property="classifyIdColor" column="classify_id_color"/>
         </association>
         <association property="size" javaType="com.mars.elleshop.entity.Size">
             <id property="sizeId" column="size_id"/>
             <result property="sizeName" column="size_name"/>
-            <result property="classifyId" column="classify_id"/>
+            <result property="classifyIdSize" column="classify_id_size"/>
         </association>
-        <collection property="classifyList" column="com.mars.elleshop.entity.Classify">
-            <id property="classifyId" column="classify_id"/>
-            <result property="classifyName" column="classify_name"/>
-            <result property="goodsId" column="goods_id"/>
-        </collection>
+<!--        <collection property="classifyList" column="com.mars.elleshop.entity.Classify">-->
+<!--            <id property="classifyId" column="classify_id"/>-->
+<!--            <result property="classifyName" column="classify_name"/>-->
+<!--            <result property="goodsId" column="goods_id"/>-->
+<!--        </collection>-->
     </resultMap>
     <select id="findGoodsTypeById" resultMap="goodsTypeMap">
-        SELECT * FROM goodstype gs , goods g , color c , `size` s, classify cf
+        SELECT  goods_type_id, gs.goods_id, gs.size_id, gs.color_id, price, photo_url,
+        g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg,
+        c.color_id, color_name, c.classify_id_color,
+        s.size_id, size_name, s.classify_id_size
+        FROM goodstype gs , goods g , color c , `size` s
         WHERE gs.goods_id = g.goods_id
         and gs.color_id = c.color_id
         and gs.size_id = s.size_id
-        and cf.goods_id = g.goods_id
+
         and gs.goods_type_id = #{goodsTypeId}
     </select>
 </mapper>

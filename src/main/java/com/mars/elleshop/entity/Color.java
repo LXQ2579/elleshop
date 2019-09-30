@@ -13,5 +13,5 @@ public class Color {
     private Integer colorId;
     @ApiModelProperty(value = "这个属性的具体内容，如蓝色，白色，羊皮，等")
     private String colorName;
-    private Integer classifyId;
+    private Integer classifyIdColor;
 }
