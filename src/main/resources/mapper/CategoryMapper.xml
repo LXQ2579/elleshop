@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+dao层接口的全限定名和namespace一样
+dao层接口中的方法名和映射文件中增删改查配置的statement id一致
+方法的参数和配置的输入参数保持一致
+方法的返回值类型和配置中返回类型保持一致
+ -->
+<mapper namespace="com.mars.elleshop.dao.CategoryDao">
+
+    <resultMap id="categoryMap" type="com.mars.elleshop.entity.Category">
+        <id column="category_id" property="categoryId"></id>
+        <result column="category_name" property="categoryName"></result>
+        <collection property="classList" ofType="com.mars.elleshop.entity.Class">
+            <id column="class_id" property="classId"></id>
+            <result column="class_name" property="className"></result>
+            <result column="category_id" property="categoryId"></result>
+            <collection property="kindList" ofType="com.mars.elleshop.entity.Kind">
+                <id column="kind_id" property="kindId"></id>
+                <result column="kind_name" property="kindName"></result>
+                <result column="class_id" property="classId"></result>
+            </collection>
+        </collection>
+    </resultMap>
+    
+    
+    
+    <select id="getAllKinds" resultMap="categoryMap" >
+        select c.category_id,c.category_name,s.class_id,s.class_name,s.category_id,k.kind_id,k.kind_name
+        from category as c ,class as s ,kind as k
+        where k.class_id=s.class_id and s.category_id=c.category_id
+
+    </select>
+
+</mapper>

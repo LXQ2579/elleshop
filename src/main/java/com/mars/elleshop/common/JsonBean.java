@@ -1,15 +1,15 @@
 package com.mars.elleshop.common;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-
-//@ApiModel
+@ApiModel
 public class JsonBean<T> {
 
-	//code标记 0 为返回数据异常  1 为返回正常数据
-//	@ApiModelProperty(value = "返回数据状态码, 1 正常返回, 其他 表示异常")
+	@ApiModelProperty(value = "返回数据状态码, 0 正常返回, 其他 表示异常")
 	private int code;
-//	@ApiModelProperty(value = "返回具体数据, 可以为null")
+	@ApiModelProperty(value = "返回具体数据, 可以为null")
 	private T info;
 
 	public JsonBean() {
