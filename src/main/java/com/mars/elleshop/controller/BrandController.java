@@ -4,6 +4,7 @@ import com.mars.elleshop.common.JsonBean;
 import com.mars.elleshop.entity.Brand;
 import com.mars.elleshop.service.BrandService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +58,7 @@ public class BrandController {
      * @param sortType 排序规则
      * @return JsonBean
      */
+    @ApiOperation(value = "查找品牌时，根据查询类型排序")
     @RequestMapping("/findAllBrand")
     public JsonBean<List<Brand>> findAllBrand(String sortType){
         List<Brand> brandList = brandService.findAll(sortType);
