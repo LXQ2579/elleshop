@@ -47,5 +47,7 @@ public class Brand implements Serializable {
     private int brandId;
     @ApiModelProperty("品牌名")
     private String brandName;
+    @ApiModelProperty("品牌logo的url")
+    private String brandLogoUrl;
 
 }

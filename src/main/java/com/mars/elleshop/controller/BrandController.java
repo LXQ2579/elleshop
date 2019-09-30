@@ -3,6 +3,7 @@ package com.mars.elleshop.controller;
 import com.mars.elleshop.common.JsonBean;
 import com.mars.elleshop.entity.Brand;
 import com.mars.elleshop.service.BrandService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,7 @@ import java.util.List;
  * @Date: 2019/9/30
  */
 //@Controller
+@Api("品牌馆API")
 @RestController
 public class BrandController {
 

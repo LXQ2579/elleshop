@@ -5,7 +5,8 @@
 <mapper namespace="com.mars.elleshop.dao.BrandDao">
 
     <select id="findAll" resultType="com.mars.elleshop.entity.Brand">
-        SELECT b.brand_id brandId,b.brand_name brandName,b.category_id,g.area_id,g.style_id
+        SELECT b.brand_id brandId,b.brand_name brandName,b.brand_logo_url brandLogoUrl,
+               b.category_id,g.area_id,g.style_id
            from brand b,goods g
              where b.brand_id = g.brand_id order by
             <!--按照热门排序-->
