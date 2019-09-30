@@ -58,7 +58,8 @@ public class BrandController {
      * @param sortType 排序规则
      * @return JsonBean
      */
-    @ApiOperation(value = "查找品牌时，根据查询类型排序")
+    @ApiOperation(value = "查找品牌时，根据查询类型排序。" +
+            "popular:热门，brandName：品牌名按A-Z，category：分类，style：风格，area ：地区")
     @RequestMapping("/findAllBrand")
     public JsonBean<List<Brand>> findAllBrand(String sortType){
         List<Brand> brandList = brandService.findAll(sortType);
