@@ -45,6 +45,5 @@ public class UserServiceImpl implements UserService {
         newUser.setPassword(passwordMD5);
 
         userDao.addUser(newUser);
-
     }
 }
