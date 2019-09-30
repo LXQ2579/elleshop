@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,8 +60,8 @@ public class BrandController {
      * @return JsonBean
      */
     @ApiOperation(value = "查找品牌时，根据查询类型排序；输入参数严格按照以下命名；" +
-            "popular:热门，brandName：品牌名按A-Z，category：分类，style：风格，area ：地区")
-    @RequestMapping("/findAllBrand")
+            "popular:热门。brandName：品牌名按A-Z。category：分类。style：风格。area ：地区")
+    @GetMapping("/findAllBrand")
     public JsonBean<List<Brand>> findAllBrand(String sortType){
         List<Brand> brandList = brandService.findAll(sortType);
         JsonBean<List<Brand>> jb = new JsonBean<>();
