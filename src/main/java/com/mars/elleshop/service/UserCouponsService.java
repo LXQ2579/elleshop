@@ -8,7 +8,7 @@ import java.util.List;
  * @author sanriyue
  */
 public interface UserCouponsService {
-    void addCoupons(Integer couponsId);
+    void addCoupons(Integer couponsId,String token);
 
     List<Coupons> findAllCoupons();
 }
