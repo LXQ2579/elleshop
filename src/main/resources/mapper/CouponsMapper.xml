@@ -6,4 +6,9 @@
         select * from coupons
         where coupons_id = #{couponsId}
     </select>
+
+    <select id="findAllCoupons" resultType="coupons">
+        select * from coupons
+
+    </select>
 </mapper>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author sanriyue
  */
@@ -20,5 +22,10 @@ public class UserCouponsServiceImpl implements UserCouponsService {
     @Override
     public void addCoupons(Integer couponsId) {
         Coupons couponsById = couponsDao.findCouponsById(couponsId);
+    }
+
+    @Override
+    public List<Coupons> findAllCoupons() {
+        return null;
     }
 }
