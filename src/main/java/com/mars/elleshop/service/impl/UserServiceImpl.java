@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("手机号错误");
         }
         String passwordMD5 = MD5Utils.md5(password + "liujiulong");
-
+        System.out.println(passwordMD5);
+        System.out.println(user.getPassword());
         if (!passwordMD5.equals(user.getPassword())){
             throw new RuntimeException("密码错误");
         }
@@ -35,6 +36,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(String phone, String password) {
+        if (phone ==null || "".equals(phone)){
+            throw new RuntimeException("手机号不能为空");
+        }
+        if (password ==null || "".equals(password)){
+            throw new RuntimeException("密码不能为空");
+        }
         User user = userDao.findByPhone(phone);
         if (user != null){
             throw new RuntimeException("手机号已被注册");

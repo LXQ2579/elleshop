@@ -32,7 +32,7 @@ public class UserCouponsController {
     }
 
     @ApiOperation(value = "给用户添加优惠券,必须登录状态，且请求头有token")
-    @GetMapping("/allCoupons.do")
+    @GetMapping("/addCoupons.do")
     public JsonBean<String> addCoupons(Integer couponsId, HttpServletRequest request){
         String token = request.getHeader("token");
         userCouponsService.addCoupons(couponsId,token);
