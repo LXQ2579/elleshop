@@ -83,6 +83,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(user);
         shoppingCart.setGoodsType(goodsType);
+        //判断购物车中是否有该商品，如果有，就加数量
+        if(redisTemplate.opsForHash().hasKey(user.getUid()+CART_KEY,goodsTypeId+"")){
+           Object o = redisTemplate.opsForHash().get(user.getUid()+CART_KEY,goodsTypeId+"");
+           ShoppingCart s = JsonUtils.jsonToPojo(o.toString(),ShoppingCart.class);
+            goodsNum = s.getGoodsNum() + goodsNum;
+        }
         shoppingCart.setGoodsNum(goodsNum);
         //将对象转换成json数据，方便存进redis
         String jsonData = JsonUtils.objectToJson(shoppingCart);
