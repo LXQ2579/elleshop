@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
 
 @ApiModel(value = "一级分类")
 @Data
-public class Category {
+public class Category implements Serializable {
 
     @ApiModelProperty(value = "一级分类id")
     private Integer categoryId;

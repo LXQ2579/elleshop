@@ -4,9 +4,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
+/**
+ * @author leizhonggang
+ */
+
 @ApiModel(value = "三级分类")
 @Data
-public class Kind {
+public class Kind implements Serializable {
     @ApiModelProperty("三级分类id")
     private Integer kindId;
     @ApiModelProperty("三级分类名")
