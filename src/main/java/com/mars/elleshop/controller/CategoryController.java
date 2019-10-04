@@ -30,7 +30,7 @@ public class CategoryController {
 
         List<Category> allKinds = categoryService.getAllKinds();
 
-        return new JsonBean(1,allKinds);
+        return new JsonBean(0,allKinds);
 
     }
 
