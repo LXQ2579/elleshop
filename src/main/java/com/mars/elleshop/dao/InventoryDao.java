@@ -1,11 +1,6 @@
-package com.mars.elleshop.entity;
+package com.mars.elleshop.dao;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
-import lombok.Data;
-
-import java.io.Serializable;
+import org.springframework.stereotype.Repository;
 
 /**
  *                     .::::.
@@ -36,27 +31,18 @@ import java.io.Serializable;
  *          奔驰宝马贵者趣，公交自行程序员。
  *          别人笑我忒疯癫，我笑自己命太贱；
  *          只见满街漂亮妹，哪个得归程序员？
- *
- * @Description: 购物车 实体类
+ * @Description:
  * @Author: lufang.zhang
- * @Date: 2019/10/3
+ * @Date: 2019/10/4
  */
-@ApiModel("购物车")
-@Data
-public class ShoppingCart implements Serializable {
+@Repository
+public interface InventoryDao {
 
-    @ApiModelProperty("购物车id")
-    private Integer cartId;
-
-    @ApiModelProperty("用户信息")
-    private User user;
-
-    @ApiModelProperty("商品详情信息")
-    private GoodsType goodsType;
-
-    @ApiModelProperty("商品数量")
-    private Integer goodsNum;
-
-
+    /**
+     * 查询所商品库存量
+     * @param goodsTypeId
+     * @return
+     */
+    int getInventory(Integer goodsTypeId);
 
 }

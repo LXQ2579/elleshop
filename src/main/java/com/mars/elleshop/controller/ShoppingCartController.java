@@ -69,17 +69,28 @@ public class ShoppingCartController {
      * @param goodsTypeId
      * @return
      */
-    @ApiOperation(value = "添加商品到购物车，参数：goodsTypeId（商品详情id）")
+    @ApiOperation(value = "添加商品到购物车，参数：goodsTypeId（商品详情id）, goodsNum(商品数量)")
     @PostMapping("/addGoodsToCart")
-    public JsonBean<String> addGoodsToCart(HttpServletRequest request, Integer goodsTypeId){
+    public JsonBean<String> addGoodsToCart(HttpServletRequest request, Integer goodsTypeId,Integer goodsNum){
         //获取用户信息
         User user = getUser(request);
         //调用方法将商品加到购物车中
-        shoppingCartService.addGoodsToCart(user,goodsTypeId);
+        shoppingCartService.addGoodsToCart(user,goodsTypeId,goodsNum);
         //如果成功，返回json数据
         JsonBean<String> jb = new JsonBean<>();
         jb.setCode(0);
         jb.setInfo("添加成功");
+        return jb;
+    }
+    @ApiOperation(value = "修改购物车商品数量 goodsNum(商品数量)")
+    @PostMapping("/updateGoodsNum")
+    public JsonBean<String> updateGoodsNum(HttpServletRequest request, Integer goodsTypeId,Integer goodsNum){
+       //获取用户信息
+        User user = getUser(request);
+        shoppingCartService.updateGoodsNum(user,goodsTypeId,goodsNum);
+        JsonBean<String> jb = new JsonBean<>();
+        jb.setCode(0);
+        jb.setInfo("操作成功");
         return jb;
     }
 
