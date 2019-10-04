@@ -86,13 +86,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @param goodsTypeId
      */
     @Override
-    public void delGoodsFromCart(User user,Integer goodsTypeId){
+    public void delGoodsFromCart(User user,String[] goodsTypeId){
         isNull(user);
         if(goodsTypeId == null){
             throw new RuntimeException("商品不存在");
         }
         //从购物车删除
-        redisTemplate.opsForHash().delete(user.getUid()+CART_KEY,goodsTypeId+"");
+        redisTemplate.opsForHash().delete(user.getUid()+CART_KEY,goodsTypeId);
     }
 
     /**

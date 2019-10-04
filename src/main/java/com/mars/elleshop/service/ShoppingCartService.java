@@ -11,7 +11,7 @@ public interface ShoppingCartService {
     void addGoodsToCart(User user, Integer goodsTypeId);
 
     //从购物车删除商品
-    void delGoodsFromCart(User user,Integer goodsTypeId);
+    void delGoodsFromCart(User user,String[] goodsTypeId);
 
     //获取商品列表
     List<ShoppingCart> list(User user);

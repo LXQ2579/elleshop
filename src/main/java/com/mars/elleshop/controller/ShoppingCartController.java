@@ -77,7 +77,7 @@ public class ShoppingCartController {
 
     @ApiOperation(value ="从购物车删除商品，参数：goodsTypeId（商品详情id）" )
     @PostMapping
-    public JsonBean<String> delGoodsFromCart(HttpSession session,Integer goodsTypeId){
+        public JsonBean<String> delGoodsFromCart(HttpSession session,String[] goodsTypeId){
         //从session中获取用户信息
         User user = (User)session.getAttribute("user");
         //调用方法执行删除操作
