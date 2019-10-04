@@ -26,6 +26,6 @@ public class GoodsController {
     public JsonBean<Goods> findGoodsById(Integer goodsId){
         Goods goodsById = goodsService.findGoodsById(goodsId);
 
-        return new JsonBean<>(0,goodsById);
+        return new JsonBean<Goods>(0,goodsById);
     }
 }
