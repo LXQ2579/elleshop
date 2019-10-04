@@ -2,6 +2,7 @@ package com.mars.elleshop.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -52,6 +53,9 @@ public class ShoppingCart implements Serializable {
 
     @ApiModelProperty("商品详情信息")
     private GoodsType goodsType;
+
+    @ApiModelProperty("商品数量")
+    private Integer goodsNum;
 
 
 

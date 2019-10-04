@@ -1,6 +1,7 @@
 package com.mars.elleshop.service.impl;
 
 import com.mars.elleshop.dao.GoodsTypeDao;
+import com.mars.elleshop.dao.InventoryDao;
 import com.mars.elleshop.entity.Goods;
 import com.mars.elleshop.entity.GoodsType;
 import com.mars.elleshop.entity.ShoppingCart;
@@ -59,26 +60,48 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private GoodsTypeDao goodsTypeDao;
 
+    @Autowired
+    private InventoryDao inventoryDao;
+
     /**
      * 添加商品到购物车
      * @param user
      * @param goodsTypeId
      */
     @Override
-    public void addGoodsToCart(User user, Integer goodsTypeId){
+    public void addGoodsToCart(User user, Integer goodsTypeId,Integer goodsNum){
+        //检查用户是否为空
         isNull(user);
+        //检查库存是否足够
+        int inventory = inventoryDao.getInventory(goodsTypeId);
+        if(goodsNum > inventory ){
+            throw  new RuntimeException("库存不足");
+        }
         //获取商品详情
         GoodsType goodsType = goodsTypeDao.findGoodsTypeById(goodsTypeId);
         //封装进购物车实体类
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(user);
         shoppingCart.setGoodsType(goodsType);
+        shoppingCart.setGoodsNum(goodsNum);
         //将对象转换成json数据，方便存进redis
         String jsonData = JsonUtils.objectToJson(shoppingCart);
         //加入购物车
         redisTemplate.opsForHash().put(user.getUid()+CART_KEY,goodsTypeId+"",jsonData);
     }
 
+    /**
+     * 修改购物车中商品数量
+     * @param user
+     * @param goodsTypeId
+     * @param goodsNum
+     */
+    @Override
+    public void updateGoodsNum(User user, Integer goodsTypeId,Integer goodsNum){
+       isNull(user);
+       redisTemplate.opsForHash().delete(user.getUid()+CART_KEY,goodsTypeId.toString());
+       addGoodsToCart(user, goodsTypeId,goodsNum);
+    }
 
     /**
      * 从购物车删除商品
