@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @ApiModel(value = "优惠券的实体类")
-public class Coupons {
+public class Coupons implements Serializable {
     @ApiModelProperty(value = "id")
     private Integer couponsId;
     @ApiModelProperty(value = "优惠金额")
