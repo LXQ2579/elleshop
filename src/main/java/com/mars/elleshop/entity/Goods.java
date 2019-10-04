@@ -33,4 +33,8 @@ public class Goods implements Serializable {
     private List<Size> sizeList;
     @ApiModelProperty(value = "品类名称")
     private List<Classify> classifyList;
+    @ApiModelProperty(value = "最小价格")
+    private Double minPrice;
+    @ApiModelProperty(value = "最大价格")
+    private Double maxPrice;
 }

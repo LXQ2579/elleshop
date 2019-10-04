@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author sanriyue
  */
@@ -27,5 +29,13 @@ public class GoodsController {
         Goods goodsById = goodsService.findGoodsById(goodsId);
 
         return new JsonBean<Goods>(0,goodsById);
+    }
+
+    @ApiOperation(value = "根据品牌的ID查到到商品的简单信息")
+    @GetMapping("/findGoodsByBrandId.do")
+    public JsonBean<List<Goods>> findGoodsByBrandId(Integer brandId){
+        List<Goods> goodsByBrandId = goodsService.findGoodsByBrandId(brandId);
+
+        return new JsonBean<List<Goods>>(0,goodsByBrandId);
     }
 }
