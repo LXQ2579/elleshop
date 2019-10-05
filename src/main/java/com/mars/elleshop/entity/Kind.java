@@ -17,6 +17,8 @@ public class Kind implements Serializable {
     private Integer kindId;
     @ApiModelProperty("三级分类名")
     private String kindName;
+    @ApiModelProperty("图片路径")
+    private String imgUrl;
     @ApiModelProperty("对应的二级分类id")
     private Integer classId;
 
