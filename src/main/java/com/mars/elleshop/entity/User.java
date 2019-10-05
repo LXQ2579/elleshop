@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author liujiulong
  * @date 2019/09/29  19:10:00
  */
-@ApiModel(value ="用户实体类, 包含各种用户信息")
+@ApiModel(value ="用户实体类, 一个用户一个实体类")
 @Getter
 @Setter
 public class User implements Serializable {
