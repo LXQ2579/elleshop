@@ -5,6 +5,7 @@ import com.mars.elleshop.dao.UserDao;
 import com.mars.elleshop.entity.ShoppingCart;
 import com.mars.elleshop.entity.User;
 import com.mars.elleshop.service.ShoppingCartService;
+import com.mars.elleshop.utils.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,7 +132,7 @@ public class ShoppingCartController {
      */
     private User getUser(HttpServletRequest request){
         //获取token
-        String token = request.getHeader("token");
+        String token = request.getHeader(Constant.TOKEN);
         //获取用户电话
         String phone = redisTemplate.opsForValue().get(token);
         //获取用户信息

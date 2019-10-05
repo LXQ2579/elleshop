@@ -7,7 +7,9 @@ import com.mars.elleshop.entity.GoodsType;
 import com.mars.elleshop.entity.ShoppingCart;
 import com.mars.elleshop.entity.User;
 import com.mars.elleshop.service.ShoppingCartService;
+import com.mars.elleshop.utils.Constant;
 import com.mars.elleshop.utils.JsonUtils;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -52,8 +54,6 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
-    private static final String CART_KEY = "shoppingCart";
-
     @Autowired
     private StringRedisTemplate redisTemplate;
 
@@ -84,8 +84,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.setUser(user);
         shoppingCart.setGoodsType(goodsType);
         //判断购物车中是否有该商品，如果有，就加数量
-        if(redisTemplate.opsForHash().hasKey(user.getUid()+CART_KEY,goodsTypeId+"")){
-           Object o = redisTemplate.opsForHash().get(user.getUid()+CART_KEY,goodsTypeId+"");
+        if(redisTemplate.opsForHash().hasKey(user.getUid()+ Constant.CART_KEY,goodsTypeId+"")){
+           Object o = redisTemplate.opsForHash().get(user.getUid()+Constant.CART_KEY,goodsTypeId+"");
            ShoppingCart s = JsonUtils.jsonToPojo(o.toString(),ShoppingCart.class);
             goodsNum = s.getGoodsNum() + goodsNum;
         }
@@ -93,7 +93,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         //将对象转换成json数据，方便存进redis
         String jsonData = JsonUtils.objectToJson(shoppingCart);
         //加入购物车
-        redisTemplate.opsForHash().put(user.getUid()+CART_KEY,goodsTypeId+"",jsonData);
+        redisTemplate.opsForHash().put(user.getUid()+Constant.CART_KEY,goodsTypeId+"",jsonData);
     }
 
     /**
@@ -105,7 +105,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public void updateGoodsNum(User user, Integer goodsTypeId,Integer goodsNum){
        isNull(user);
-       redisTemplate.opsForHash().delete(user.getUid()+CART_KEY,goodsTypeId.toString());
+       redisTemplate.opsForHash().delete(user.getUid()+Constant.CART_KEY,goodsTypeId.toString());
        addGoodsToCart(user, goodsTypeId,goodsNum);
     }
 
@@ -121,7 +121,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             throw new RuntimeException("商品不存在");
         }
         //从购物车删除
-        redisTemplate.opsForHash().delete(user.getUid()+CART_KEY,goodsTypeId);
+        redisTemplate.opsForHash().delete(user.getUid()+Constant.CART_KEY,goodsTypeId);
     }
 
     /**
@@ -133,7 +133,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public List<ShoppingCart> list(User user){
         isNull(user);
-        List<Object> values = redisTemplate.opsForHash().values(user.getUid()+CART_KEY);
+        List<Object> values = redisTemplate.opsForHash().values(user.getUid()+Constant.CART_KEY);
         List<ShoppingCart> goodsList = JsonUtils.jsonToList(values.toString(),ShoppingCart.class);
         return goodsList;
     }
