@@ -22,5 +22,7 @@ public class Category implements Serializable {
     private String categoryName;
     @ApiModelProperty(value = "私有的二级分类属性的集合")
     private List<Class> classList;
+    @ApiModelProperty(value = "品牌")
+    private List<Brand> brands;
 
 }

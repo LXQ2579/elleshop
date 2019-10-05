@@ -1,10 +1,11 @@
-package com.mars.elleshop.dao;
+package com.mars.elleshop.entity;
 
-import com.mars.elleshop.entity.Area;
-import com.mars.elleshop.entity.Brand;
-import com.mars.elleshop.entity.Category;
-import com.mars.elleshop.entity.Style;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -36,42 +37,19 @@ import java.util.List;
  *          奔驰宝马贵者趣，公交自行程序员。
  *          别人笑我忒疯癫，我笑自己命太贱；
  *          只见满街漂亮妹，哪个得归程序员？
- *
- *
- * @Description: 品牌馆
+ * @Description:
  * @Author: lufang.zhang
- * @Date: 2019/9/30
+ * @Date: 2019/10/5
  */
-public interface BrandDao {
 
-    /**
-     * 查找所有品牌，按照A-Z排序
-     * @return
-     */
-    List<Brand> findAll();
+@ApiModel("风格")
+@Data
+public class Style implements Serializable {
 
-    /**
-     * 查找所有品牌，按照热门排序显示
-     * @return
-     */
-    List<Brand> findAllByPopular();
-
-    /**
-     * 按分类查找所有品牌
-     * @return
-     */
-    List<Category> findAllBrandByCategory();
-
-    /**
-     * 按风格查找所有品牌
-     * @return
-     */
-    List<Style> findAllBrandByStyle();
-
-
-    /**
-     * 按地区查找所有品牌
-     * @return
-     */
-    List<Area> findAllBrandByArea();
+    @ApiModelProperty("风格id")
+    private Integer styleId;
+    @ApiModelProperty("风格名")
+    private String styleName;
+    @ApiModelProperty(value = "品牌")
+    private List<Brand> brands;
 }

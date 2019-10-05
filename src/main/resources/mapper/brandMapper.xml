@@ -4,37 +4,70 @@
 
 <mapper namespace="com.mars.elleshop.dao.BrandDao">
 
+    <!--品牌类map-->
+    <resultMap id="brandMap" type="com.mars.elleshop.entity.Brand">
+        <id property="brandId" column="brandId"></id>
+        <result property="brandName" column="brandName"></result>
+        <result property="brandLogoUrl" column="brandLogoUrl"></result>
+    </resultMap>
+
+    <!--按分类显示品牌的map-->
+    <resultMap id="categoryBrandMap" type="com.mars.elleshop.entity.Category">
+        <id property="categoryId" column="categoryId"></id>
+        <result property="categoryName" column="categoryName"></result>
+        <collection property="brands" ofType="com.mars.elleshop.entity.Brand" resultMap="brandMap">
+        </collection>
+    </resultMap>
+
+    <!--按风格显示品牌的map-->
+    <resultMap id="styleBrandMap" type="com.mars.elleshop.entity.Style">
+        <id property="styleId" column="styleId"></id>
+        <result property="styleName" column="styleName"></result>
+        <collection property="brands" ofType="com.mars.elleshop.entity.Brand" resultMap="brandMap">
+        </collection>
+    </resultMap>
+
+    <!--按地区显示品牌的map-->
+    <resultMap id="areaBrandMap" type="com.mars.elleshop.entity.Area">
+        <id property="areaId" column="areaId"></id>
+        <result property="areaName" column="areaName"></result>
+        <collection property="brands" ofType="com.mars.elleshop.entity.Brand" resultMap="brandMap">
+        </collection>
+    </resultMap>
+
+    <!--显示所有品牌按照A-Z排序-->
     <select id="findAll" resultType="com.mars.elleshop.entity.Brand">
+        SELECT b.brand_id brandId,b.brand_name brandName,b.brand_logo_url brandLogoUrl
+               from brand b order by CONVERT(b.brand_name USING gbk)
+    </select>
+    <!--显示所有品牌按照热门排序-->
+    <select id="findAllByPopular" resultType="com.mars.elleshop.entity.Brand">
+          SELECT b.brand_id brandId,b.brand_name brandName,b.brand_logo_url brandLogoUrl
+             from brand b,goods g  where b.brand_id = g.brand_id
+    </select>
+
+    <!--显示所有品牌按照分类显示-->
+    <select id="findAllBrandByCategory" resultMap="categoryBrandMap">
         SELECT b.brand_id brandId,b.brand_name brandName,b.brand_logo_url brandLogoUrl,
-               b.category_id,g.area_id,g.style_id
-           from brand b,goods g
-             where b.brand_id = g.brand_id order by
-             <choose>
-                 <!--popular:按照热门排序-->
-                 <when test="sortType == 'popular'">
-                     b.brand_id
-                 </when>
-                 <!--brandName:按照名字A-Z排序-->
-                 <when test="sortType == 'brandName'">
-                     CONVERT(b.brand_name USING gbk)
-                 </when>
-                 <!--category:按照分类排序-->
-                 <when test="sortType == 'category'">
-                      b.category_id
-                 </when>
-                 <!--style:按照风格排序-->
-                 <when test="sortType == 'style'">
-                      g.style_id
-                 </when>
-                 <!--area:按照地区排序-->
-                 <when test="sortType == 'area'">
-                      g.area_id
-                 </when>
-                 <!--默认按照品牌排序-->
-                 <otherwise >
-                      b.brand_id
-                 </otherwise>
-             </choose>
+        ca.category_name categoryName,ca.category_id categoryId
+       from category ca LEFT JOIN brand b on
+         ca.category_id = b.category_id
+    </select>
+
+    <!--显示所有品牌按照风格显示-->
+    <select id="findAllBrandByStyle" resultMap="styleBrandMap">
+        SELECT b.brand_id brandId,b.brand_name brandName,b.brand_logo_url brandLogoUrl,
+               s.style_name styleName,s.style_id styleId
+           from brand b LEFT JOIN goods g on b.brand_id = g.brand_id RIGHT JOIN style s
+             on s.style_id = g.style_id
+    </select>
+
+    <!--显示所有品牌按照地区显示-->
+    <select id="findAllBrandByArea" resultMap="areaBrandMap">
+         SELECT b.brand_id brandId,b.brand_name brandName,b.brand_logo_url brandLogoUrl,
+                a.area_name areaName,a.area_id areaId
+           from brand b LEFT JOIN goods g on b.brand_id = g.brand_id RIGHT JOIN area a
+             on a.area_id = g.area_id
     </select>
 
 </mapper>

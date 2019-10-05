@@ -1,7 +1,10 @@
 package com.mars.elleshop.service.impl;
 
 import com.mars.elleshop.dao.BrandDao;
+import com.mars.elleshop.entity.Area;
 import com.mars.elleshop.entity.Brand;
+import com.mars.elleshop.entity.Category;
+import com.mars.elleshop.entity.Style;
 import com.mars.elleshop.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,12 +53,51 @@ public class BrandServiceImpl implements BrandService {
     @Autowired(required = false)
     private BrandDao brandDao;
     /**
-     * 查找所有品牌，按照指定规则排序
-     * @param sortType 排序规则
+     * 查找所有品牌，按照A-Z规则排序
      * @return
      */
     @Override
-    public List<Brand> findAll(String sortType) {
-        return brandDao.findAll(sortType);
+    public List<Brand> findAll() {
+        return brandDao.findAll();
+    }
+
+    /**
+     * 查找所有品牌，按照热门排序显示
+     *
+     * @return
+     */
+    @Override
+    public List<Brand> findAllByPopular() {
+        return brandDao.findAllByPopular();
+    }
+
+    /**
+     * 按分类查找所有品牌
+     *
+     * @return
+     */
+    @Override
+    public List<Category> findAllBrandByCategory() {
+        return brandDao.findAllBrandByCategory();
+    }
+
+    /**
+     * 按风格查找所有品牌
+     *
+     * @return
+     */
+    @Override
+    public List<Style> findAllBrandByStyle() {
+        return brandDao.findAllBrandByStyle();
+    }
+
+    /**
+     * 按地区查找所有品牌
+     *
+     * @return
+     */
+    @Override
+    public List<Area> findAllBrandByArea() {
+        return brandDao.findAllBrandByArea();
     }
 }

@@ -1,6 +1,9 @@
 package com.mars.elleshop.service;
 
+import com.mars.elleshop.entity.Area;
 import com.mars.elleshop.entity.Brand;
+import com.mars.elleshop.entity.Category;
+import com.mars.elleshop.entity.Style;
 
 import java.util.List;
 
@@ -39,10 +42,34 @@ import java.util.List;
  */
 public interface BrandService {
     /**
-     * 查找所有品牌，按照指定规则排序
-     * @param sortType 排序规则
+     * 查找所有品牌，按照A-Z指定规则排序
      * @return
      */
-    List<Brand> findAll(String sortType);
+    List<Brand> findAll();
+    
+    /**
+     * 查找所有品牌，按照热门排序显示
+     * @return
+     */
+    List<Brand> findAllByPopular();
+
+    /**
+     * 按分类查找所有品牌
+     * @return
+     */
+    List<Category> findAllBrandByCategory();
+
+    /**
+     * 按风格查找所有品牌
+     * @return
+     */
+    List<Style> findAllBrandByStyle();
+
+
+    /**
+     * 按地区查找所有品牌
+     * @return
+     */
+    List<Area> findAllBrandByArea();
 
 }
