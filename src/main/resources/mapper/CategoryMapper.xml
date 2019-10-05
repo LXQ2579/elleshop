@@ -20,6 +20,7 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
             <collection property="kindList" ofType="com.mars.elleshop.entity.Kind">
                 <id column="kind_id" property="kindId"></id>
                 <result column="kind_name" property="kindName"></result>
+                <result column="img_url" property="imgUrl"></result>
                 <result column="class_id" property="classId"></result>
             </collection>
         </collection>
@@ -28,7 +29,7 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
     
     
     <select id="getAllKinds" resultMap="categoryMap" >
-        select c.category_id,c.category_name,s.class_id,s.class_name,s.category_id,k.kind_id,k.kind_name
+        select c.category_id,c.category_name,s.class_id,s.class_name,s.category_id,k.kind_id,k.kind_name,k.img_url
         from category as c ,class as s ,kind as k
         where k.class_id=s.class_id and s.category_id=c.category_id
 
