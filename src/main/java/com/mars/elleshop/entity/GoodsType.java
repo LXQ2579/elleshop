@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  */
 @ApiModel(value = "购买结算时的商品的实体类，一个颜色尺寸即有一个这个具体的类")
 @Data
-public class GoodsType {
+public class GoodsType implements Serializable {
     @ApiModelProperty(value = "订单商品类的ID")
     private Integer goodsTypeId;
     @ApiModelProperty(value = "所属商品的ID")

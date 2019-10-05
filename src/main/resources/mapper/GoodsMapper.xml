@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.elleshop.dao.GoodsDao">
+    <resultMap id="goodsMap" type="goods">
+        <id property="goodsId" column="goods_id"/>
+        <result property="goodsName" column="goods_name"/>
+        <result property="brandId" column="brand_id"/>
+        <result property="styleId" column="style_id"/>
+        <result property="areaId" column="area_id"/>
+        <result property="videoUrl" column="video_url"/>
+        <result property="goodsMsg" column="goods_msg"/>
+        <result property="minPrice" column="min_price"/>
+        <result property="maxPrice" column="max_price"/>
+        <collection property="colorList" ofType="color">
+            <id property="colorId" column="color_id"/>
+            <result property="colorName" column="color_name"/>
+            <result property="classifyIdColor" column="classify_id_color"/>
+        </collection>
+        <collection property="sizeList" ofType="size">
+            <id property="sizeId" column="size_id"/>
+            <result property="sizeName" column="size_name"/>
+            <result property="classifyIdSize" column="classify_id_size"/>
+        </collection>
+        <collection property="classifyList" ofType="classify">
+            <id property="classifyId" column="classify_id"/>
+            <result property="classifyName" column="classify_name"/>
+            <result property="goodsId" column="goods_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="findGoodsById" resultMap="goodsMap">
+        select
+        (SELECT min(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS min_price ,
+        (SELECT MAX(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS max_price ,
+         classify_id, classify_name, cf.goods_id ,
+         color_id, color_name, classify_id_color,
+         size_id, size_name, classify_id_size,
+         g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg
+         from goods g
+        LEFT JOIN classify cf ON g.goods_id = cf.goods_id
+        LEFT JOIN color c on cf.classify_id = c.classify_id_color
+        LEFT JOIN size s on cf.classify_id = s.classify_id_size
+        where g.goods_id = #{goodsId}
+         ORDER BY cf.classify_id
+    </select>
+    <select id="findGoodsByBrandId" resultType="goods">
+        SELECT g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg,
+        (SELECT min(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS min_price ,
+        (SELECT MAX(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS max_price
+        FROM goods g where g.brand_id = #{brandId}
+    </select>
+</mapper>

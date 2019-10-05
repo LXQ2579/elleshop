@@ -4,12 +4,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
+
+/**
+ * @author leizhonggang
+ */
 
 //二级分类
 @ApiModel(value = "二级分类")
 @Data
-public class Class {
+public class Class implements Serializable {
     @ApiModelProperty("二级分类id")
     private Integer classId;
     @ApiModelProperty("二级分类名")

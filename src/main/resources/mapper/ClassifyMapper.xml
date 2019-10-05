@@ -11,4 +11,8 @@
         SELECT * FROM classify
         where classify_id = #{classifyId}
     </select>
+    <select id="findClassIfyByGoodsId" resultMap="classifyMap" >
+        select * from classify
+        where  goods_id = #{goodsId}
+    </select>
 </mapper>
