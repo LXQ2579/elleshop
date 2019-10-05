@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author leizhonggang
+ */
+
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
 

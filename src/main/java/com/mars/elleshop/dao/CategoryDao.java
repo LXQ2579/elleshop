@@ -4,6 +4,10 @@ import com.mars.elleshop.entity.Category;
 
 import java.util.List;
 
+/**
+ * @author leizhonggang
+ */
+
 public interface CategoryDao {
 
     /**
