@@ -11,4 +11,8 @@ public interface GoodsService {
     Goods findGoodsById(Integer goodsId);
 
     List<Goods> findGoodsByBrandId (Integer brandId);
+    List<Goods> findAllGoods ();
+    List<Goods> findGoodsByStyleId(Integer styleId);
+
+    List<Goods> findGoodsByAreaId(Integer areaId);
 }

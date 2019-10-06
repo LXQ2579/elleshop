@@ -52,4 +52,25 @@
         goods_img_url
         FROM goods g where g.brand_id = #{brandId}
     </select>
+    <select id="findAllGoods" resultType="goods">
+         SELECT g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg,
+        (SELECT min(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS min_price ,
+        (SELECT MAX(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS max_price,
+        goods_img_url
+        FROM goods g
+    </select>
+    <select id="findGoodsByStyleId" resultType="goods">
+         SELECT g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg,
+        (SELECT min(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS min_price ,
+        (SELECT MAX(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS max_price,
+        goods_img_url
+        FROM goods g where style_id = #{styleId}
+    </select>
+    <select id="findGoodsByAreaId" resultType="goods">
+         SELECT g.goods_id, goods_name, brand_id, style_id, area_id, video_url, goods_msg,
+        (SELECT min(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS min_price ,
+        (SELECT MAX(price) FROM goodstype gt WHERE gt.goods_id=g.goods_id) AS max_price,
+        goods_img_url
+        FROM goods g where area_id = #{areaId}
+    </select>
 </mapper>

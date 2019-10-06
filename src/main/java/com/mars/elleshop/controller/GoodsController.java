@@ -38,4 +38,24 @@ public class GoodsController {
 
         return new JsonBean<List<Goods>>(0,goodsByBrandId);
     }
+
+    @ApiOperation(value = "获取所有的商品")
+    @GetMapping("/findAllGoods.do")
+    public JsonBean<List<Goods>> findAllGoods(){
+        List<Goods> allGoods = goodsService.findAllGoods();
+        return new JsonBean<>(0,allGoods);
+    }
+
+    @ApiOperation(value = "根据风格ID获取所有商品")
+    @GetMapping("/findGoodsByStyleId.do")
+    public JsonBean<List<Goods>> findGoodsByStyleId(Integer styleId){
+        List<Goods> allGoods = goodsService.findGoodsByStyleId(styleId);
+        return new JsonBean<>(0,allGoods);
+    }
+    @ApiOperation(value = "根据地区ID获取所有商品")
+    @GetMapping("/findGoodsByAreaId.do")
+    public JsonBean<List<Goods>> findGoodsByAreaId(Integer areaId){
+        List<Goods> allGoods = goodsService.findGoodsByAreaId(areaId);
+        return new JsonBean<>(0,allGoods);
+    }
 }

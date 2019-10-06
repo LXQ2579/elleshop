@@ -33,4 +33,34 @@ public class GoodsServiceImpl implements GoodsService {
         }
         return goodsList;
     }
+
+    @Override
+    public List<Goods> findAllGoods() {
+        List<Goods> allGoods = goodsDao.findAllGoods();
+        if (allGoods ==null){
+            throw new RuntimeException("商品找不到了，请联系管理员");
+
+        }
+        return allGoods;
+    }
+
+    @Override
+    public List<Goods> findGoodsByStyleId(Integer styleId) {
+        List<Goods> allGoods = goodsDao.findGoodsByStyleId(styleId);
+        if (allGoods ==null){
+            throw new RuntimeException("商品找不到了，请联系管理员");
+
+        }
+        return allGoods;
+    }
+
+    @Override
+    public List<Goods> findGoodsByAreaId(Integer areaId) {
+        List<Goods> allGoods = goodsDao.findGoodsByAreaId(areaId);
+        if (allGoods ==null){
+            throw new RuntimeException("商品找不到了，请联系管理员");
+
+        }
+        return allGoods;
+    }
 }
