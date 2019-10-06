@@ -40,8 +40,8 @@ public class CouponsTest {
     public void testRedis(){
 
 
-        stringRedisTemplate.opsForHash().put(111+"coupons",2+"",
-                JsonUtils.objectToJson(couponsDao.findAllCoupons().get(1)));
+//        stringRedisTemplate.opsForHash().put(111+"coupons",2+"",
+//                JsonUtils.objectToJson(couponsDao.findAllCoupons().get(1)));
 
     }
     @Test
