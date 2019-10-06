@@ -111,6 +111,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- 阿里云短信服务sdk -->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>

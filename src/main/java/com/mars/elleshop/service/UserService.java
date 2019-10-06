@@ -11,4 +11,10 @@ public interface UserService {
     User login(String phone, String password);
 
     void register(String phone, String password);
+
+    User showUserMessage(String phone);
+
+    boolean sendMessage(String phone, String code);
+
+    void checkMessage(String phone, String intoCode);
 }
