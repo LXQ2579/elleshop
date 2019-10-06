@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,5 +38,13 @@ public class UserCouponsController {
         String token = request.getHeader("token");
         userCouponsService.addCoupons(couponsId,token);
         return new JsonBean<>(0,"优惠券已添加");
+    }
+
+    @ApiOperation(value = "查看用户下面的优惠券")
+    @PostMapping("/findUserCouponsList.do")
+    public JsonBean<List<Coupons>> findUserCouponsList(HttpServletRequest request){
+        String token = request.getHeader("token");
+        List<Coupons> couponsList = userCouponsService.findAllCouponsOnUser(token);
+        return new JsonBean<>(0,couponsList);
     }
 }

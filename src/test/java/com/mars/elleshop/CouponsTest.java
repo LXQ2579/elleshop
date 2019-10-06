@@ -38,10 +38,19 @@ public class CouponsTest {
     }
     @Test
     public void testRedis(){
-        User user = new User();
 
-        stringRedisTemplate.opsForHash().put(111+"coupons",1+"",
-                user.toString());
+
+        stringRedisTemplate.opsForHash().put(111+"coupons",2+"",
+                JsonUtils.objectToJson(couponsDao.findAllCoupons().get(1)));
+
+    }
+    @Test
+    public void testRedisHash(){
+        List<Object> values = stringRedisTemplate.opsForHash().values(111 + "coupons");
+        List<Coupons> coupons = JsonUtils.jsonToList(values.toString(), Coupons.class);
+        for (Coupons coupon : coupons) {
+            System.out.println(coupon);
+        }
 
     }
 }

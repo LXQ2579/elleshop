@@ -37,4 +37,15 @@ public class UserCouponsServiceImpl implements UserCouponsService {
     public List<Coupons> findAllCoupons() {
         return couponsDao.findAllCoupons();
     }
+
+    @Override
+    public  List<Coupons> findAllCouponsOnUser(String token){
+        String phone = stringRedisTemplate.opsForValue().get(token);
+        List<Object> values = stringRedisTemplate.opsForHash().values(phone + "coupons");
+        List<Coupons> couponsList = JsonUtils.jsonToList(values.toString(), Coupons.class);
+        if (couponsList==null){
+            throw new RuntimeException("该用户没有优惠券");
+        }
+        return couponsList;
+    }
 }

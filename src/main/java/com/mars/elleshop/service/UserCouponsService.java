@@ -11,4 +11,6 @@ public interface UserCouponsService {
     void addCoupons(Integer couponsId,String token);
 
     List<Coupons> findAllCoupons();
+
+    public  List<Coupons> findAllCouponsOnUser(String token);
 }
