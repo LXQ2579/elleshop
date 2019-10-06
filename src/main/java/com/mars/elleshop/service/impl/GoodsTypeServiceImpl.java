@@ -36,4 +36,15 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
         goodsType.setClassifyList(classifyList);
         return goodsType;
     }
+
+    @Override
+    public GoodsType findGoodsTypeByCZ(Integer colorId, Integer sizeId) {
+        GoodsType byCZ = goodsTypeDao.findGoodsTypeByCZ(colorId, sizeId);
+        if (byCZ ==null){
+            throw new RuntimeException("商品找不到，请联系管理员");
+        }
+        return byCZ;
+    }
+
+
 }

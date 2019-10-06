@@ -32,4 +32,14 @@ public class GoodsTypeController {
         }
         return null;
     }
+
+    @ApiOperation(value = "根据颜色和尺寸ID查到对应商品的具体价格，ID，库存量")
+    @GetMapping("/findGoodsTypeByCZ.do")
+    public JsonBean<GoodsType> findGoodsTypeByCZ(Integer colorId,Integer sizeId){
+        if (colorId ==null|| sizeId == null){
+            throw new RuntimeException("colorId或sizeId参数错误");
+        }
+        GoodsType byCZ = goodsTypeService.findGoodsTypeByCZ(colorId, sizeId);
+        return new JsonBean<>(0,byCZ);
+    }
 }

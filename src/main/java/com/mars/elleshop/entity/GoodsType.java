@@ -31,6 +31,7 @@ public class GoodsType implements Serializable {
     private Color color;
     @ApiModelProperty(value = "具体属性2，同上")
     private Size size;
-
+    @ApiModelProperty(value = "库存量")
+    private Integer inventoryNum;
     private List<Classify> classifyList;
 }

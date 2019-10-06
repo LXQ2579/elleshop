@@ -7,4 +7,5 @@ import com.mars.elleshop.entity.GoodsType;
  */
 public interface GoodsTypeService {
     GoodsType findGoodsTypeById(Integer goodsTypeId);
+    GoodsType findGoodsTypeByCZ(Integer colorId ,Integer sizeId);
 }

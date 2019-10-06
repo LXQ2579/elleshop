@@ -13,4 +13,6 @@ public interface GoodsTypeDao {
     GoodsType findGoodsTypeById(Integer goodsTypeId);
 
     List<GoodsType> findAllGoodsTypeByGoodsId(Integer goodsId);
+
+    GoodsType findGoodsTypeByCZ(Integer  colorId,Integer sizeId);
 }

@@ -53,4 +53,10 @@ dao层接口中的方法名和映射文件中增删改查配置的statement id�
 
         and gs.goods_type_id = #{goodsTypeId}
     </select>
+    <select id="findGoodsTypeByCZ" resultType="goodsType">
+        select gs.goods_type_id,gs.goods_id, size_id, color_id, price, photo_url ,inventory_num
+        from goodstype gs , inventory it
+        where color_id = #{colorId} and size_id = #{sizeId}
+        AND gs.goods_type_id = it.goods_type_id
+    </select>
 </mapper>

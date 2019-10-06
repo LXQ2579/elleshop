@@ -18,4 +18,9 @@ public class GoodsTypeTest {
         GoodsType byId = goodsTypeDao.findGoodsTypeById(1);
         System.out.println(byId);
     }
+    @Test
+    public void testFindByCZ(){
+        GoodsType goodsTypeByCZ = goodsTypeDao.findGoodsTypeByCZ(1, 2);
+        System.out.println(goodsTypeByCZ);
+    }
 }
