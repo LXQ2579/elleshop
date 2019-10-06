@@ -88,6 +88,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
            Object o = redisTemplate.opsForHash().get(user.getUid()+Constant.CART_KEY,goodsTypeId+"");
            ShoppingCart s = JsonUtils.jsonToPojo(o.toString(),ShoppingCart.class);
             goodsNum = s.getGoodsNum() + goodsNum;
+            if(goodsNum > inventory ){
+                throw  new RuntimeException("库存不足");
+            }
         }
         shoppingCart.setGoodsNum(goodsNum);
         //将对象转换成json数据，方便存进redis
