@@ -25,7 +25,7 @@ public class ImgUtils {
      * @return
      * @throws IOException
      */
-    public static String createBase64Avatar(String name) throws IOException {
+    public static String createPhotoImg(String name) throws IOException {
 
         String avater = new String(Base64.getEncoder().encode(create(Math.abs(name.hashCode()))));
         return BASE64_PREFIX + avater;
