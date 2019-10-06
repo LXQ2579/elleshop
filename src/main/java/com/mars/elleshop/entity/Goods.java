@@ -37,4 +37,5 @@ public class Goods implements Serializable {
     private Double minPrice;
     @ApiModelProperty(value = "最大价格")
     private Double maxPrice;
+    private String goodsImgUrl;
 }

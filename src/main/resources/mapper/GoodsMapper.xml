@@ -12,6 +12,7 @@
         <result property="goodsMsg" column="goods_msg"/>
         <result property="minPrice" column="min_price"/>
         <result property="maxPrice" column="max_price"/>
+        <result property="goodsImgUrl" column="goods_img_url"/>
         <collection property="colorList" ofType="color">
             <id property="colorId" column="color_id"/>
             <result property="colorName" column="color_name"/>
