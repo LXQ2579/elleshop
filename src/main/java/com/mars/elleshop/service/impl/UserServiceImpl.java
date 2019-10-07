@@ -104,11 +104,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void checkMessage(String phone, String intoCode) {
 
+
         if (phone == null || "".equals(phone)) {
             throw new RuntimeException("手机号不能为空");
         }
         if (intoCode == null || "".equals(intoCode)) {
             throw new RuntimeException("验证码不能为空");
+        }
+
+        User user = userDao.findByPhone(phone);
+        if (user != null) {
+            throw new RuntimeException("手机号已被注册");
         }
 
         String code = MD5Utils.md5(phone + "sendCode");

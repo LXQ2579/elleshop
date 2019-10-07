@@ -48,7 +48,7 @@ public class UserController {
         String token = MD5Utils.md5(phone + "liujiulong");
         //将token放入到redis中
         stringRedisTemplate.opsForValue().set(token, phone);
-        stringRedisTemplate.expire(token,1800, TimeUnit.SECONDS);
+        stringRedisTemplate.expire(token,24, TimeUnit.HOURS);
         return new JsonBean<>(0, token);
     }
 

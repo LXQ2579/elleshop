@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mars.elleshop.dao.PaymentTypeDao">
+    <select id="findPaymentTypeById" resultType="paymentType">
+        select * from paymenttype
+        where payment_type_id = #{paymentTypeId}
+    </select>
+
+    <select id="findAllPaymentType" resultType="paymentType">
+        select * from paymenttype
+
+    </select>
+</mapper>
