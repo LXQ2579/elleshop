@@ -20,7 +20,7 @@ public class GoodsTypeTest {
     }
     @Test
     public void testFindByCZ(){
-        GoodsType goodsTypeByCZ = goodsTypeDao.findGoodsTypeByCZ(1, 2);
+        GoodsType goodsTypeByCZ = goodsTypeDao.findGoodsTypeByCZ(3, 3);
         System.out.println(goodsTypeByCZ);
     }
 }

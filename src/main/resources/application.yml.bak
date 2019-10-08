@@ -23,10 +23,10 @@ spring:
         max-idle: 8
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mariadb://106.13.115.175:3306/elleshop?useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://106.13.115.175:3308/elleshop?useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: sanriyue_hou
-    driver-class-name: org.mariadb.jdbc.Driver
+    password: bugqfppp
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   thymeleaf:
     cache: false
