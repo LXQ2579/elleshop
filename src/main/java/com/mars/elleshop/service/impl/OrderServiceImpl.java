@@ -61,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
             order.setIdInformation(idInformation);
             order.setPaymentType(paymentType);
             order.setCreateTime(new Date());
-            order.setPrice(goodsList.get(i).getGoodsType().getPrice() - coupon.getCouponsPrice());
+            order.setPrice(goodsList.get(i).getGoodsType().getPrice() * goodsList.get(i).getGoodsNum() - coupon.getCouponsPrice());
             orders.add(order);
         }
 
