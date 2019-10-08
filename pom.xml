@@ -43,15 +43,16 @@
             <version>1.1.20</version>
         </dependency>
         <!-- mysql 驱动程序 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+        <!-- mariadb 驱动程序 -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <version>2.5.0</version>
+            <scope>runtime</scope>
         </dependency>
         <!-- 注解实体类 get set方法 -->
         <dependency>
