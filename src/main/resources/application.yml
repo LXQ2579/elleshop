@@ -3,16 +3,20 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.mars.elleshop.entity
+
 server:
   servlet:
     context-path: /elleshop
+
 spring:
+
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     password: sanriyue_hou
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mariadb://106.13.115.175:3306/elleshop?useSSL=false&serverTimezone=Asia/Shanghai
     username: root
+
   redis:
     host: 106.13.115.175
     lettuce:
@@ -21,6 +25,7 @@ spring:
         max-idle: 8
         min-idle: 1
     port: 6379
+
   thymeleaf:
     cache: false
 
